@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GitHub Profile Viewer</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <main class="container">
+      <div class="page-intro">
+        <div class="header">
+          <svg
+            role="img"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <title>GitHub</title>
+            <path
+              fill="currentColor"
+              d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"
+            />
+          </svg>
+          <h1>GitHub Profile Viewer</h1>
+        </div>
+
+        <p>Search a username to view their profile and repositories.</p>
+      </div>
+      <!-- Form to have (text input + submit button acting as one unit) -->
+      <form class="search-container">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="lucide lucide-search"
+        >
+          <path d="m21 21-4.34-4.34" />
+          <circle cx="11" cy="11" r="8" />
+        </svg>
+        <input
+          type="text"
+          placeholder="Enter a GitHub username"
+          autocomplete="off"
+          data-1p-ignore
+          data-lpignore="true"
+          data-bwignore
+          data-form-type="other"
+          data-protonpass-ignore
+        />
+        <button type="submit" disabled >Search</button>
+      </form>
+
+      <div class="result">
+        <div class="loading-state" hidden>
+          <p class="loading-label">
+            Looking up <span class="searched-username">@ghost-user-42</span>…
+          </p>
+
+          <div class="loading-profile" aria-hidden="true">
+            <div class="skeleton skeleton-avatar"></div>
+            <div class="loading-identity">
+              <div class="skeleton skeleton-name"></div>
+              <div class="skeleton skeleton-username"></div>
+            </div>
+          </div>
+
+          <div class="loading-content" aria-hidden="true">
+            <div class="skeleton skeleton-line-long"></div>
+            <div class="skeleton skeleton-line-short"></div>
+            <div class="skeleton skeleton-stats"></div>
+          </div>
+
+          <div class="loading-repositories" aria-hidden="true">
+            
+            <div class="loading-repo">
+              <div class="skeleton skeleton-repo-name"></div>
+              <div class="skeleton skeleton-repo-description"></div>
+            </div>
+
+            <div class="loading-repo">
+              <div class="skeleton skeleton-repo-name"></div>
+              <div class="skeleton skeleton-repo-description"></div>
+            </div>
+
+            <div class="loading-repo">
+              <div class="skeleton skeleton-repo-name"></div>
+              <div class="skeleton skeleton-repo-description"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="status-state empty-state" >
+        <div class="search-icon">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-search"
+          >
+            <path d="m21 21-4.34-4.34" />
+            <circle cx="11" cy="11" r="8" />
+          </svg>
+        </div>
+        <h2>Search for a GitHub user</h2>
+        <p>Their profile and repositories will appear here.</p>
+      </div>
+
+        <div class="status-state error-state" hidden>
+          <div class="search-icon">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-search"
+            >
+              <path d="m21 21-4.34-4.34" />
+              <circle cx="11" cy="11" r="8" />
+            </svg>
+          </div>
+          <h2>No profile found</h2>
+          <p>
+            We couldn’t find <span class="searched-username">@ghost-user</span>. Check the spelling and try again
+          </p>
+        </div>
+
+        
+        <div class="found-state" hidden>
+          <div class="profile-card">
+            <div class="profile-header">
+              <img src="assets/images.png" alt="empty pic" />
+              <div class="profile-identity">
+                <h2>Vishnu V</h2>
+                <span class="username">@vishnooh</span>
+              </div>
+              <a
+                class="profile-link"
+                href="https://github.com/alexmorgan"
+                target="_blank"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-external-link"
+                >
+                  <path d="M15 3h6v6" />
+                  <path d="M10 14 21 3" />
+                  <path
+                    d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                  />
+                </svg>
+                View Github Profile
+              </a>
+            </div>
+            <p>
+              Building small things for the web. Curious about thoughtful
+              interfaces, open source, and how things work.
+            </p>
+            <div class="profile-details">
+              <span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-map-pin"
+                >
+                  <path
+                    d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"
+                  />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+                London</span
+              >
+
+              <span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-calendar-days"
+                >
+                  <path d="M8 2v3" />
+                  <path d="M16 2v3" />
+                  <rect x="3" y="3" width="18" height="18" rx="2" />
+                  <path d="M3 9h18" />
+                  <path d="M8 13h.01" />
+                  <path d="M12 13h.01" />
+                  <path d="M16 13h.01" />
+                  <path d="M8 17h.01" />
+                  <path d="M12 17h.01" />
+                  <path d="M16 17h.01" />
+                </svg>
+                Joined march 2021</span
+              >
+            </div>
+            <div class="external-links">
+              <a class="website" href="website.com">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-link"
+                >
+                  <path
+                    d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"
+                  />
+                  <path
+                    d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"
+                  />
+                </svg>
+                website.com
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-arrow-up-right"
+                >
+                  <path d="M7 7h10v10" />
+                  <path d="M7 17 17 7" /></svg
+              ></a>
+              <a class="socials" href="socials.com">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-at-sign"
+                >
+                  <circle cx="12" cy="12" r="4" />
+                  <path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-4 8" />
+                </svg>
+                socials
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-arrow-up-right"
+                >
+                  <path d="M7 7h10v10" />
+                  <path d="M7 17 17 7" /></svg
+              ></a>
+            </div>
+            <div class="stats">
+              <div class="stat">
+                <span>28</span>
+                <span>repositories</span>
+              </div>
+              <div class="stat">
+                <span>1,204</span>
+                <span>followers</span>
+              </div>
+              <div class="stat">
+                <span>86</span>
+                <span>following</span>
+              </div>
+            </div>
+          </div>
+
+          <section class="repositories">
+            <div class="repositories-header">
+              <h2>Popular repositories</h2>
+              <p>3 of 28</p>
+            </div>
+            <div class="repo-row">
+              <div class="repo-info">
+                <a class="repo-name" href="blank.com"
+                  ><svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 16 16"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"
+                    ></path>
+                  </svg>
+                  tiny-notes
+                </a>
+                <p class="repo-description">
+                  A simples place to think, write and keep things
+                </p>
+              </div>
+              <div class="repo-meta">
+                <span class="lang" style="--language-color: #f1e05a">
+                  JavaScript
+                </span>
+                <span class="stars"> 128 stars </span>
+              </div>
+            </div>
+
+            <div class="repo-row">
+              <div class="repo-info">
+                <a class="repo-name" href="blank.com"
+                  ><svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 16 16"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"
+                    ></path>
+                  </svg>
+                  tiny-notes
+                </a>
+                <p class="repo-description">
+                  A simples place to think, write and keep things
+                </p>
+              </div>
+              <div class="repo-meta">
+                <span class="lang" style="--language-color: #f1e05a">
+                  JavaScript
+                </span>
+                <span class="stars"> 128 stars </span>
+              </div>
+            </div>
+
+            <div class="repo-row">
+              <div class="repo-info">
+                <a class="repo-name" href="blank.com"
+                  ><svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 16 16"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"
+                    ></path>
+                  </svg>
+                  tiny-notes
+                </a>
+                <p class="repo-description">
+                  A simples place to think, write and keep things
+                </p>
+              </div>
+              <div class="repo-meta">
+                <span class="lang" style="--language-color: #f1e05a">
+                  JavaScript
+                </span>
+                <span class="stars"> 128 stars </span>
+              </div>
+            </div>
+
+            <a
+              class="view-all"
+              href="https://github.com/alexmorgan?tab=repositories"
+              >View all repositories</a
+            >
+          </section>
+        </div>
+       
+      </div>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>
