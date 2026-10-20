@@ -106,10 +106,9 @@ p {
   font-weight: 500;
   font-size: 14px;
   color: #10241b;
-
 }
 
-.search-container button:enabled{
+.search-container button:enabled {
   cursor: pointer;
 }
 
@@ -139,7 +138,7 @@ p {
   font-weight: 600;
 }
 
-.empty-state{
+.empty-state {
   padding: 44px 12px 52px;
   background-color: var(--card);
   border: 1px solid var(--cardborder);
@@ -186,6 +185,12 @@ p {
 }
 .error-state p {
   max-width: 30ch;
+}
+
+.rate-limit-icon svg {
+  color: #ff8585;
+  width: 25px;
+  height: 25px;
 }
 
 .profile-card {
@@ -343,6 +348,7 @@ p {
   display: flex;
   align-items: center;
   margin-top: 25px;
+  margin-bottom: 10px;
 }
 
 .repositories-header h2 {
@@ -360,7 +366,8 @@ p {
 .repo-row {
   display: flex;
   border-bottom: 1px solid var(--cardborder);
-  padding: 25px 0px;
+  padding: 25px 16px;
+  margin-left: -16px;
 }
 
 .repo-info {
@@ -431,6 +438,16 @@ p {
   justify-content: center;
 
   margin-top: 25px;
+}
+
+.repositories button:enabled {
+  cursor: pointer;
+}
+
+.repositories button:hover {
+  border: 1px solid var(--accent);
+  background: #293c30;
+  color: var(--accent);
 }
 
 .loading-label {
@@ -511,7 +528,8 @@ p {
 }
 
 @keyframes pulse {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 1;
   }
 
@@ -521,7 +539,7 @@ p {
 }
 
 [hidden] {
-  display: none;
+  display: none !important;
 }
 
 a:focus-visible,
