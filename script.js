@@ -89,18 +89,25 @@ searchForm.addEventListener("submit", async function (event) {
     profileLocation.textContent = data.location;
     
   
-   
+
     joinedDate.textContent = "Joined "+ new Date(data.created_at).toLocaleDateString("en-GB", { month: "long", year: "numeric"});
     
     websiteLink.hidden = !data.blog;
-    websiteLink.href = data.blog;
+    
+    //check to see if given link starts with http
+    if(!data.blog.startsWith("http")) {
+      websiteLink.href = "https://" + data.blog; 
+    }
+
+    else
+      websiteLink.href = data.blog;
+
     websiteText.textContent = data.blog;
 
 
     socialsLink.hidden = !data.twitter_username;
     socialsLink.href = "https://x.com/"+data.twitter_username;
     socialsText.textContent = data.twitter_username;
-
 
     repoCount.textContent = data.public_repos;
     followersCount.textContent = data.followers;
