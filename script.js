@@ -51,11 +51,9 @@ searchForm.addEventListener("submit", async function (event) {
   // time the request to enforce a minimum loading time
   const loadingStartedAt = performance.now();
   const response = await fetch("https://api.github.com/users/" + fixedUsername);
-  console.log(response.status);
   const data = await response.json();
 
   const elapsedMs = performance.now() - loadingStartedAt;
-  console.log(data);
 
   // hold the loading page briefly
   const minimumLoadingMs = 300;
@@ -75,6 +73,19 @@ searchForm.addEventListener("submit", async function (event) {
     loadingState.hidden = true;
     errorState.hidden = false;
   } else if (response.ok) {
+    // fetch the repos before loading anything else, placed here because otherwise if profile error, the array will not be recognized and throws fun error
+    const reposResponse = await fetch(
+      "https://api.github.com/users/" + fixedUsername + "/repos?per_page=100",
+    );
+    const repos = await reposResponse.json();
+
+    repos.sort(function (a, b) {
+      return b.stargazers_count - a.stargazers_count;
+    });
+
+    const topRepos = repos.slice(0, 3);
+    console.log(topRepos);
+
     loadingState.hidden = true;
     foundState.hidden = false;
 
