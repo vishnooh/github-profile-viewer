@@ -211,8 +211,12 @@ p {
 .profile-header {
   display: flex;
   align-items: center;
+  margin-bottom: 20px;
 }
 
+#profile-description {
+   margin: 0 0 20px;
+}
 .profile-identity {
   padding: 0 26px;
   display: flex;
@@ -253,6 +257,8 @@ p {
   gap: 10px;
   font-size: 13px;
   font-weight: 600;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .profile-link svg {
@@ -561,6 +567,7 @@ button:focus-visible {
   .profile-header {
     flex-wrap: wrap;
     column-gap: 18px;
+
   }
 
   .profile-identity {
